@@ -17,5 +17,18 @@ evenValuesInFibonacci :: [Int] -> Int
 evenValuesInFibonacci [] = 0
 evenValuesInFibonacci [x] = 0
 evenValuesInFibonacci (x:xs)
-    | (fib x) `mod` 2 == 0 = fib x + evenValuesInFibonacci xs
+    | even (fib x) == True = fib x + evenValuesInFibonacci xs
     | otherwise = evenValuesInFibonacci xs
+
+--Returns true if prime
+
+simplePrimeTest :: Int -> Bool
+simplePrimeTest 0 = False --a prime is greater than one so 0 is not a prime
+simplePrimeTest 1 = True
+simplePrimeTest x = simplePrimeTester x x
+simplePrimeTester :: (Int, Int) -> Bool
+simplePrimeTester x 1 = True
+simplePrimeTester x y
+    | x `mod` y == 0 = False
+    | otherwise = simplePrimeTester x y-1
+
