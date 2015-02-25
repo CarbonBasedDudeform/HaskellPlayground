@@ -9,3 +9,6 @@ n = a `div` length xs
         xs = [1,2,3,4,5]
 
 mylast xs = take 1 (reverse xs)
+
+add' :: Int -> (Int -> Int)
+add' x y = x + y
