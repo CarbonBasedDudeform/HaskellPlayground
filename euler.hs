@@ -26,9 +26,10 @@ simplePrimeTest :: Int -> Bool
 simplePrimeTest 0 = False --a prime is greater than one so 0 is not a prime
 simplePrimeTest 1 = True
 simplePrimeTest x = simplePrimeTester x x
-simplePrimeTester :: (Int, Int) -> Bool
+simplePrimeTester :: Int -> Int -> Bool
 simplePrimeTester x 1 = True
 simplePrimeTester x y
-    | x `mod` y == 0 = False
-    | otherwise = simplePrimeTester x y-1
+    z = y - 1
+    if (x `mod` z == 0) False
+    else simplePrimeTester x z
 
