@@ -2,8 +2,8 @@ import System.IO
 
 main = do
   playersName <- greet
-  p <- Player
-  playGame
+  let p = Player playersName 1.0
+  playGame p
   farewell
 
 data Player = Player {
@@ -13,16 +13,16 @@ data Player = Player {
 
 greet = do
   putStrLn "What is your name?"
-  playerName <- askName
-  putStrLn ( "Welcome, " ++ (show $ playerName) )
-  return playerName
+  name <- askName
+  putStrLn ( "Welcome, " ++ (show $ name) )
+  return name
 
 askName = do
   name <- getLine
   return name
 
 playGame player = do
-	putStrLn "Unimplemented " ++ player
+	putStrLn ( "Unimplemented " ++ (show $ player) )
 
 farewell = do
 	putStrLn "Thanks for playing"
