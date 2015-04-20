@@ -1,8 +1,10 @@
 import System.IO
 
+fullHealth = 1.0
+
 main = do
   playersName <- greet
-  let p = Player playersName 1.0
+  let p = Player playersName fullHealth
   playGame p
   farewell
 
