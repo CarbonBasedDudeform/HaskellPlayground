@@ -27,18 +27,25 @@ main = do
 
 greet = do
   putStrLn "What is your name?"
-  name <- askName
+  name <- getInput
   putStrLn ( "Welcome, " ++ (show $ name) )
   return name
 
-askName = do
-  name <- getLine
-  return name
+getInput = do
+	input <- getLine
+	return input
+
+promptPlayerForAction = do
+	putStrLn ("what ya gonna do?")
+	putStrLn ("8---> ")
+	action <- getInput
+	return action
 
 levelOne player enemy = do
-  putStrLn ( "Oh shit " ++ (show $ player) ++ " walks into a bar.")
-  putStrLn ( "Has a few beers and pisses off")
-  putStrLn (show $ enemy)
+	putStrLn ("Oh shit " ++ (show $ (name player)) ++ " walks into a bar.")
+	putStrLn ("Has a few beers and pisses off " ++ (show $ (eName enemy)) )
+	chosenAction <- promptPlayerForAction
+	putStrLn ("So you're gonna " ++ (show $ chosenAction) ++ ", eh?")
 
 playGame player = do
   let boss = Enemy "Bob" 1.0 1.0
