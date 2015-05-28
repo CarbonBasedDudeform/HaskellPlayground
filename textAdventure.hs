@@ -41,11 +41,28 @@ promptPlayerForAction = do
 	action <- getInput
 	return action
 
+checkValidity action = do
+	if action == "run" || action == "fight"
+		then return True
+		else return False
+
+decideOutcome chosenAction enemy = do
+	validity <- (checkValidity chosenAction)
+	if (validity)
+		then putStrLn ("test")
+		else do
+			putStrLn ("What? what the fuck is that? Do you speak english motherfucker 'cause what ain't not language I ever heard of")
+			putStrLn ("While you were fucking around, " ++ (show $ (eName enemy)) ++ ", smashed you in the face with their fist.")
+			putStrLn ("You lost X health")
+
+
 levelOne player enemy = do
 	putStrLn ("Oh shit " ++ (show $ (name player)) ++ " walks into a bar.")
 	putStrLn ("Has a few beers and pisses off " ++ (show $ (eName enemy)) )
 	chosenAction <- promptPlayerForAction
 	putStrLn ("So you're gonna " ++ (show $ chosenAction) ++ ", eh?")
+	decideOutcome chosenAction enemy
+
 
 playGame player = do
   let boss = Enemy "Bob" 1.0 1.0
