@@ -1,4 +1,5 @@
 import System.IO
+import System.Random
 
 --Data types used throughout
 fullHealth = 1.0
@@ -43,25 +44,28 @@ promptPlayerForAction = do
 
 checkValidity action = do
 	if action == "run" || action == "fight"
-		then return True
-		else return False
+		then True
+		else False
 
-decideOutcome chosenAction enemy = do
-	validity <- (checkValidity chosenAction)
-	if (validity)
-		then putStrLn ("test")
+unknownAction enemy =
+	"What? what the fuck is that? Do you speak english motherfucker 'cause what ain't not language I ever heard of\n"
+	++ "While you were fucking around, " ++ (show $ (eName enemy)) ++ ", smashed you in the face with their fist.\n"
+	++ "You lost " ++ show (10) ++ "health.\n"
+
+decideOutcome chosenAction enemy =
+	if (checkValidity chosenAction)
+		then
+			let outcome = "test" in return outcome
 		else do
-			putStrLn ("What? what the fuck is that? Do you speak english motherfucker 'cause what ain't not language I ever heard of")
-			putStrLn ("While you were fucking around, " ++ (show $ (eName enemy)) ++ ", smashed you in the face with their fist.")
-			putStrLn ("You lost X health")
-
+			let outcome = unknownAction enemy in return outcome
 
 levelOne player enemy = do
 	putStrLn ("Oh shit " ++ (show $ (name player)) ++ " walks into a bar.")
 	putStrLn ("Has a few beers and pisses off " ++ (show $ (eName enemy)) )
 	chosenAction <- promptPlayerForAction
 	putStrLn ("So you're gonna " ++ (show $ chosenAction) ++ ", eh?")
-	decideOutcome chosenAction enemy
+	outcome <- decideOutcome chosenAction enemy
+	putStrLn outcome
 
 
 playGame player = do
