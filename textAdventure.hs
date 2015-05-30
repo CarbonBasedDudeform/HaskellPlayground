@@ -5,6 +5,9 @@ import System.Random
 fullHealth = 1.0
 fullStrength = 1.0
 
+--random number generator
+--generator <- newStdGen
+
 data Player = Player {
 	name :: String,
 	health :: Float,
@@ -47,10 +50,13 @@ checkValidity action = do
 		then True
 		else False
 
-unknownAction enemy =
+generateRandomDamage weight =
+	randomRIO (0, weight) :: IO Float
+
+unknownAction enemy dmg =
 	"What? what the fuck is that? Do you speak english motherfucker 'cause what ain't not language I ever heard of\n"
 	++ "While you were fucking around, " ++ (show $ (eName enemy)) ++ ", smashed you in the face with their fist.\n"
-	++ "You lost " ++ show (10) ++ "health.\n"
+	++ "You lost " ++ (show dmg)  ++ " health.\n"
 
 processAction action enemy =
 	if action == "fight"
@@ -64,7 +70,8 @@ decideOutcome chosenAction enemy =
 		then
 			let outcome = processAction chosenAction enemy in return outcome
 		else do
-			let outcome = unknownAction enemy in return outcome
+			dmg <- generateRandomDamage 10
+			let outcome = unknownAction enemy dmg in return outcome
 
 levelOne player enemy = do
 	putStrLn ("Oh shit " ++ (show $ (name player)) ++ " walks into a bar.")
