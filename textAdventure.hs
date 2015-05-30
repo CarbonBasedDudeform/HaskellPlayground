@@ -52,10 +52,17 @@ unknownAction enemy =
 	++ "While you were fucking around, " ++ (show $ (eName enemy)) ++ ", smashed you in the face with their fist.\n"
 	++ "You lost " ++ show (10) ++ "health.\n"
 
+processAction action enemy =
+	if action == "fight"
+		then
+			"You have decided to fight."
+		else
+			"You run away like a coward."
+
 decideOutcome chosenAction enemy =
 	if (checkValidity chosenAction)
 		then
-			let outcome = "test" in return outcome
+			let outcome = processAction chosenAction enemy in return outcome
 		else do
 			let outcome = unknownAction enemy in return outcome
 
