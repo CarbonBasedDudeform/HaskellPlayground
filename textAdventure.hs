@@ -39,6 +39,9 @@ getInput = do
 	input <- getLine
 	return input
 
+validAction userAction knownAction
+	return ( userAction == knownAction )
+
 promptPlayerForAction = do
 	putStrLn ("what ya gonna do?")
 	putStrLn ("8---> ")
